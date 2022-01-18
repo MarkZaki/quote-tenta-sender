@@ -50,3 +50,5 @@ cron.schedule("0 15 * * *", () => {
 cron.schedule("0 18 * * *", () => {
   GetRandomQuote();
 });
+
+app.listen(process.env.PORT || 3000);

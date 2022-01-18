@@ -1,6 +1,7 @@
 const request = require("request");
 const dotenv = require("dotenv").config();
 const cron = require("node-cron");
+const express = require("express");
 
 const sendToTenta = (author, quote) => {
   request.post(`https://tenta.me/${process.env.TENTA_CODE}`, {
@@ -23,6 +24,12 @@ const MyDailyQuote = () => {
     "Your Choices is What You Are, Not Your Money Or Status. and Good Morals Are Always Rewarded"
   );
 };
+
+const app = express();
+
+app.get("/", (req, res) => {
+  res.send("Quote App Running");
+});
 
 cron.schedule("0 6 * * *", () => {
   MyDailyQuote();
